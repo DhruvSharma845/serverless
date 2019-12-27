@@ -1,0 +1,18 @@
+service: node-ftp-upload-csv
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+
+functions:
+  ftpUploadCsv:
+    handler: index.uploadCsvFTP
+    events:
+      # Invoke Lambda function every minute
+      - schedule: rate(1 minute)
